@@ -8,9 +8,9 @@
 //	HARDWARE multiplexed 7-segment display 
 //  on the breadboard using C program firmware.c
 //
-//	Chuck Pateros
+//	Team FLAC
 //	University of San Diego
-//	09-Nov-2021
+//	Dec. 2021
 //
 ////////
 
@@ -158,7 +158,7 @@ module top (
 
     picosoc #(
         .BARREL_SHIFTER(0), // reduces device utilization
-		.ENABLE_MULDIV(1), // reduces device utilization
+	    .ENABLE_MULDIV(0), // reduces device utilization
         .MEM_WORDS(2048)  // use 2KBytes of block RAM by default
     ) soc (
         .clk          (clk         ),
