@@ -15,9 +15,9 @@
 //  reg_gpio = ...      //GPIO output to display circuit
 //  var = reg_gpio ...  // input from display circuit GPIO to program
 //
-//	Chuck Pateros
-//	University of San Diego
-//	26-Jun-2021
+// Team FLAC
+// USD - COMP 300
+// Dec. 2021
 //
 ////////
 
@@ -44,7 +44,7 @@ uint32_t set_irq_mask(uint32_t mask); asm (
 );
 
 // Here is a function if you don't have "/" and "%"
-/*uint32_t convert(uint32_t num)
+uint32_t convert(uint32_t num)
 {
     unsigned char min_ten = 0;
     unsigned char min_one = 0;
@@ -67,7 +67,7 @@ uint32_t set_irq_mask(uint32_t mask); asm (
     }
     sec_one = num;
     return (min_ten << 12) | (min_one << 8) | (sec_ten << 4) | sec_one;
-}*/
+}
 
 void main() {
     set_irq_mask(0xff);
@@ -128,19 +128,19 @@ void main() {
           second_timer = 0;
 
     // Following code works when "/" and "%" implemented
-       minutes = ((second_timer / 60) % 60);
+      /* minutes = ((second_timer / 60) % 60);
        min_tens = minutes / 10;
        min_ones = minutes % 10;
 
        sec_tens = (second_timer % 60) / 10;
        sec_ones = (second_timer % 60) % 10;
-       reg_gpio = (min_tens << 12) | (min_ones << 8) | (sec_tens << 4) | sec_ones;
+       reg_gpio = (min_tens << 12) | (min_ones << 8) | (sec_tens << 4) | sec_ones;*/
 
     // End of "/" and "%" code
     
     // Code to use a function if "/" and "%" not implemented
-    /*uint32_t con = convert(second_timer);
-    reg_gpio = con; // debug LEDs in 4 LSBs*/
+    uint32_t con = convert(second_timer);
+    reg_gpio = con; // debug LEDs in 4 LSBs
        
   } // end of while(1)
 } // end of main program
