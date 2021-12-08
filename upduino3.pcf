@@ -34,7 +34,7 @@ set_io -nowarn DEC 47
 #Added buzzer, set min, set sec, and rest pins
 set_io -nowarn BUZZ 23
 
-set_io -nowarn SET_MIN 25
+set_io -nowarn SET_MIN 32
 set_io -nowarn SET_SEC 26
 
 set_io -nowarn RESET 27
