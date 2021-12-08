@@ -81,7 +81,7 @@ void main() {
     reg_spictrl = (reg_spictrl & ~0x007F0000) | 0x00400000;
 
     uint32_t led_timer = 0;
-    uint32_t second_timer = 0;
+    uint32_t second_timer = 3599;
     uint32_t ms_timer = 0;
     uint32_t display_digit = 0;
     uint32_t comm = 0b1110;
@@ -109,35 +109,21 @@ void main() {
           new_second_toggle = reg_gpio & 0x1;
       }
       second_toggle = new_second_toggle;
+
+        //Our code
+      if(reg_gpio&0b100){ //if the pin is in then reset
+          second_timer=3599;
+      }
+      else if (reg_gpio&0b10){ //if pin is in then pause else count down
+            second_timer--;
+
+                if(second_timer <= 0){ //if you are patient and count goes to 0 reset to 1 hour
+                    second_timer = 3599;
+                }
+            }
       
-      // Read UP_DOWN 
-      if(reg_gpio&0b10)
-      {
-          second_timer++;
-          incrementing = true;
-      }
-      else
-      {
-          second_timer--;
-          incrementing = false;
-      }
 
-      if(second_timer > 3599 & !incrementing)
-          second_timer = 3599;
-      else if(second_timer > 3599 & incrementing)
-          second_timer = 0;
 
-    // Following code works when "/" and "%" implemented
-      /* minutes = ((second_timer / 60) % 60);
-       min_tens = minutes / 10;
-       min_ones = minutes % 10;
-
-       sec_tens = (second_timer % 60) / 10;
-       sec_ones = (second_timer % 60) % 10;
-       reg_gpio = (min_tens << 12) | (min_ones << 8) | (sec_tens << 4) | sec_ones;*/
-
-    // End of "/" and "%" code
-    
     // Code to use a function if "/" and "%" not implemented
     uint32_t con = convert(second_timer);
     reg_gpio = con; // debug LEDs in 4 LSBs

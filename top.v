@@ -42,6 +42,7 @@ module top (
     //////////////////////////////////
 
     input UP_DWN,
+    input RESET,
 
     output DEC,
     output COLHI,
@@ -115,7 +116,7 @@ module top (
 
 
     reg [31:0] gpio_out;
-    wire [31:0] gpio_in = ((second_toggle &1'b1) << 0)|((UP_DWN & 1'b1)<<1);
+    wire [31:0] gpio_in = ((second_toggle &1'b1) << 0)|((UP_DWN & 1'b1)<<1)|((RESET & 1'b1)<<2);
     wire second_toggle;
 
 // Tie low order GPIO outputs to debug LEDs 
