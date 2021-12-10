@@ -1,8 +1,8 @@
 ////////
 // 
-//	p4/top.v
+//	P5/top.v
 //
-//	Project 4  FA21
+//	Project 5  FA21
 //	
 //  PICOSOC RISC-V processor instantiated to support a
 //	HARDWARE multiplexed 7-segment display 
