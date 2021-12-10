@@ -81,7 +81,7 @@ void main() {
     reg_spictrl = (reg_spictrl & ~0x007F0000) | 0x00400000;
 
     uint32_t led_timer = 0;
-    uint32_t second_timer = 3599;
+    uint32_t second_timer = 10;
     uint32_t ms_timer = 0;
     uint32_t display_digit = 0;
     uint32_t comm = 0b1110;
@@ -95,11 +95,13 @@ void main() {
     uint32_t min_ones = 0;
     uint32_t sec_tens = 0;
     uint32_t sec_ones = 0;
+    uint32_t buzz = 1;
+    uint32_t minute_save = 3599;
     bool dec = 1;
     
     bool incrementing = false;
     while (1) {
-
+    
       // read values from hardware
       //      assign read_data = ((second_toggle & 32'b1)); // from top.v
       new_second_toggle = reg_gpio & 0x1;
@@ -111,8 +113,7 @@ void main() {
       second_toggle = new_second_toggle;
 
       //Our code version 2
-      uint32_t minute_save = 3599;
-      if(reg_gpio & 0b100){second_timer=3599;} //reset pin TODO: set Buzzer low
+      if(reg_gpio & 0b100){second_timer=3599; buzz=1;} //reset pin TODO: set Buzzer low
      
       else if ((reg_gpio & 0b10000)){
         second_timer -= 60; //decrement min
@@ -130,10 +131,10 @@ void main() {
       }
 
       else if (reg_gpio & 0b10){ //countdown pin start/stop
-        second_timer--;
 
-        if(second_timer <= 0){second_timer = 0;} //TODO set buzzer high
+        if(second_timer <= 0){second_timer = 0;buzz = 0;} //TODO set buzzer high
         
+        else{second_timer--;}
         }
         
       /*//Our code
@@ -171,7 +172,7 @@ void main() {
 
     // Code to use a function if "/" and "%" not implemented
     uint32_t con = convert(second_timer);
-    reg_gpio = con; // debug LEDs in 4 LSBs
+    reg_gpio = con | (buzz<<31); // debug LEDs in 4 LSBs
        
   } // end of while(1)
 } // end of main program
