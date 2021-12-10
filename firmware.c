@@ -1,8 +1,8 @@
 ////////
 // 
-//	p4/firmware.c
+//	P5/firmware.c
 //
-//	Project 4 
+//	Project 5 
 //	
 //	Hardware multiplexed 7-segment display 
 //  on the breadboard using this C program on a 
