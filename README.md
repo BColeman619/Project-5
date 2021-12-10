@@ -10,4 +10,4 @@ Written Report - https://docs.google.com/document/d/1Eeq9dDfUHNd7C5D3tCyicZ6t-zS
 
 Panapto Video - 
 
-TEAM FOLDER, Project 5 - https://drive.google.com/drive/folders/1mzjLxHtG9gk8WZfy_gCmPeW2OUKeEqii?usp=sharing
+Team Folder, Project 5 - https://drive.google.com/drive/folders/1mzjLxHtG9gk8WZfy_gCmPeW2OUKeEqii?usp=sharing
