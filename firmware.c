@@ -114,11 +114,30 @@ void main() {
       if(reg_gpio&0b100){ //if the pin is in then reset
           second_timer=3599;
       }
+     
+
+      else if ((reg_gpio & 0b10000))
+          second_timer -=60; //decrement min
+           if(second_timer <= 59){ //if you are patient and count goes to 0 reset to 1 hour
+                    
+                    second_timer = 3599;
+                }
+          } 
+
+      else if ((reg_gpio & 0b1000)){
+         second_timer -= 1; // decrement sec
+         if(second_timer <= 0){ //if you are patient and count goes to 0 reset to 1 hour
+                    
+                    second_timer = 59;
+                }
+
+
       else if (reg_gpio&0b10){ //if pin is in then pause else count down
             second_timer--;
 
                 if(second_timer <= 0){ //if you are patient and count goes to 0 reset to 1 hour
-                    second_timer = 3599;
+                    
+                    second_timer = 0;
                 }
             }
       

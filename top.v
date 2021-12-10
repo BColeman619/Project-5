@@ -43,16 +43,19 @@ module top (
 
     input UP_DWN,
     input RESET,
+    input SET_MIN,
+    input SET_SEC,
 
     output DEC,
     output COLHI,
     output COLLO,
+    output BUZZ,
 
 
     // Do not edit or remove
     output [3:0] COMM, // 4 common cathodes
     output [6:0] SEG, // seven segments 6-g, 0-a
-    output [3:0] DBG // 4 debug leds on breadboard
+    output [3:0] DBG // 4 debug leds on breadboard  
     
 );
     ///////////////////////////////////
@@ -116,11 +119,12 @@ module top (
 
 
     reg [31:0] gpio_out;
-    wire [31:0] gpio_in = ((second_toggle &1'b1) << 0)|((UP_DWN & 1'b1)<<1)|((RESET & 1'b1)<<2);
+    wire [31:0] gpio_in = ((second_toggle &1'b1) << 0)|((UP_DWN & 1'b1)<<1)|((RESET & 1'b1)<<2) | ((SET_SEC & 1'b1)<<3)|((SET_MIN & 1'b1)<<4);
     wire second_toggle;
 
 // Tie low order GPIO outputs to debug LEDs 
     assign DBG = gpio_out[3:0];
+    assign BUZZ = gpio_out[31];
 
     //assign COLHI = 1;
     assign COLLO = 0;
