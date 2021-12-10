@@ -110,7 +110,33 @@ void main() {
       }
       second_toggle = new_second_toggle;
 
-        //Our code
+      //Our code version 2
+      uint32_t minute_save = 3599;
+      if(reg_gpio & 0b100){second_timer=3599;} //reset pin TODO: set Buzzer low
+     
+      else if ((reg_gpio & 0b10000)){
+        second_timer -= 60; //decrement min
+        minute_save = second_timer - 59;
+        
+        if(second_timer <= 59){second_timer = 3599;}
+        
+        } 
+
+      else if ((reg_gpio & 0b1000)){
+        second_timer -= 1; // decrement sec
+         
+        if(second_timer <= minute_save){second_timer = minute_save + 59;}
+
+      }
+
+      else if (reg_gpio & 0b10){ //countdown pin start/stop
+        second_timer--;
+
+        if(second_timer <= 0){second_timer = 0;} //TODO set buzzer high
+        
+        }
+        
+      /*//Our code
       if(reg_gpio&0b100){ //if the pin is in then reset
           second_timer=3599;
       }
@@ -139,7 +165,7 @@ void main() {
                     
                     second_timer = 0;
                 }
-            }
+            }*/
       
 
 
