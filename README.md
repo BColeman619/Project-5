@@ -1,4 +1,4 @@
-# comp300-fa21-Project 5
+# comp300-fa21-Project 5, Team FLAC
 
 Build, test, document, and illustrate a hardware peripheral multiplexed 7-segment display on a Verilog RISC-V processor.  Demonstrate the operation of the peripheral with a Countdown Timer. 
 
