@@ -81,7 +81,7 @@ void main() {
     reg_spictrl = (reg_spictrl & ~0x007F0000) | 0x00400000;
 
     uint32_t led_timer = 0;
-    uint32_t second_timer = 10;
+    uint32_t second_timer = 10; //Set to 10 so we could see the buzzer work. Set back to 3599 if you want regular timer
     uint32_t ms_timer = 0;
     uint32_t display_digit = 0;
     uint32_t comm = 0b1110;
